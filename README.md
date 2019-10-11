@@ -17,7 +17,7 @@ Chromebook (ChromeOS) 上で動作する Linux コンテナ（Crostini）に以�
 2. Chromebook上にセットアップされた Linux ターミナル から以下のコマンドを実行する。
 
 ```sh
-//TODO
+curl -s https://raw.githubusercontent.com/progedu/crostini-dev-setup-ja/master/scripts/setup.sh | bash
 ```
 
 ## ライセンス

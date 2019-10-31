@@ -6,6 +6,10 @@ fi
 echo -e "\e[36m===================================================="
 echo -e "\e[36mUpdating Softwares..."
 echo -e "\e[36m====================================================\e[m"
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt install -y apt-transport-https
 sudo apt update
 sudo apt -y upgrade
 # set locale
@@ -39,13 +43,12 @@ echo -e "/usr/bin/fcitx-autostart" >> ~/.sommelierrc
 echo -e "\e[36m===================================================="
 echo -e "\e[36mInstalling VS Code..."
 echo -e "\e[36m====================================================\e[m"
-curl -OL "https://go.microsoft.com/fwlink/?LinkID=760868" > vscode.deb
-sudo apt install ./vscode.deb -y
+sudo apt install -y code
 code --install-extension MS-CEINTL.vscode-language-pack-ja
 echo -e "{\"locale\":\"ja\"}" > ~/.config/Code/User/locale.json
 # remove files
 echo -e "\e[36m===================================================="
 echo -e "\e[36mDelete "
 echo -e "\e[36m====================================================\e[m"
-rm -rf vscode.deb 2.011R.tar.gz ./source-han-code-jp-2.011R
+rm -rf 2.011R.tar.gz ./source-han-code-jp-2.011R
 echo "Complete"
